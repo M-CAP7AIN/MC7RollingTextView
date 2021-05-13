@@ -1,0 +1,79 @@
+﻿Build1=Default,b4a.example.MC7RollingTextView
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=xui
+Library3=mc7rollingtextview
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="29"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=3
+NumberOfModules=1
+Version=10.7
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: MC7RollingTextView
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	Private MC7RollingTextView1 As MC7RollingTextView
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	
+	
+	MC7RollingTextView1.AnimationDuration = 10000
+	MC7RollingTextView1.CharStrategy = MC7RollingTextView1.ST_CarryBitAnimation(MC7RollingTextView1.SCROLL_UP)
+	'MC7RollingTextView1.CharStrategy = MC7RollingTextView1.ST_AlignAnimationStrategy(MC7RollingTextView1.Alignment_Right)
+	MC7RollingTextView1.addCharOrder(MC7RollingTextView1.CO_Number)
+	MC7RollingTextView1.setAnimationInterpolator
+	MC7RollingTextView1.TextSize = 50
+	MC7RollingTextView1.Text = 0
+	MC7RollingTextView1.Text = 200
+	MC7RollingTextView1.Padding = Array As Int ( 10dip,0,10dip,0)
+	
+	MC7RollingTextView1.Width = -2
+	MC7RollingTextView1.Height = -2
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Button1_Click
+	If MC7RollingTextView1.isRunning = False Then
+		If MC7RollingTextView1.Text = "0" Then
+			MC7RollingTextView1.Text = "20"
+		Else
+			MC7RollingTextView1.Text = "0"
+		End If
+	End If
+End Sub
+
+Private Sub MC7RollingTextView1_onAnimationEnd
+	Log("MC7RollingTextView1_onAnimationEnd")
+End Sub
